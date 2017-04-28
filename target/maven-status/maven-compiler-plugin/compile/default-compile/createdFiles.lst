@@ -1,0 +1,8 @@
+common\TAGS.class
+pageObject\Base.class
+common\UserInputs$User.class
+common\UserInputs.class
+common\Config.class
+common\Driver.class
+pageObject\LoginPage.class
+pageObject\ReceiptPage.class
