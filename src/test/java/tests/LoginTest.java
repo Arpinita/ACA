@@ -2,7 +2,7 @@ package tests;
 
 
 import common.Driver;
-import org.openqa.selenium.*;
+import common.UserInputs;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import org.testng.annotations.Test;
@@ -15,10 +15,12 @@ public class LoginTest {
     public Driver driver = new Driver();
     public WebDriver webDriver;
     public LoginPage loginPage;
-    String validationmail =
+    UserInputs user = new UserInputs();
+
 
     @BeforeTest
     public void openBrowser() {
+
         webDriver = driver.getDriver();
         loginPage = new LoginPage(webDriver);
         webDriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -28,47 +30,45 @@ public class LoginTest {
     @Test()
     public void LoginWithEmptyFields() {
         loginPage.ClickOnLoginButton();
-        loginPage.LoginCredentials("email", "pass");
+        loginPage.LoginCredentials("", "");
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
-       }
+        }
         loginPage.submit();
-        Assert.assertEquals(validationmail,"Username Required");
-        Assert.assertEquals(validationpass,"Password Required");
+        Assert.assertEquals(loginPage.Validationmail(), "Username Required");
+        Assert.assertEquals(loginPage.Validationpass(), "Password Required");
     }
 
+
+    @Test()
+    public void LoginWithInvalidCredentials() {
+        loginPage.ClickOnLoginButton();
+        loginPage.LoginCredentials("user", "123456");
+        loginPage.submit();
+        Assert.assertEquals(loginPage.Mainvalidation(), "Email not registered – try again or create an account");
+
+    }
+
+    @Test()
+    public void LoginWithValidCredentials() {
+        loginPage.ClickOnLoginButton();
+        loginPage.LoginCredentials(user.getValue("access", "email"), "123456");
+        loginPage.submit();
+        Assert.assertEquals(loginPage.Username(), "Access");
+    }
+
+    @Test
+    public void Logout() {
+        loginPage.ClickOnLoginButton();
+        loginPage.LoginCredentials(user.getValue("access", "email"), "123456");
+        loginPage.submit();
+        Assert.assertEquals(loginPage.Username(), "Access");
+        loginPage.LogOut();
+        Assert.assertEquals(loginPage.LoginButton, "Login");
+    }
 }
-
-
-//
-//        driver.findElement(By.id("btn_submit")).click();
-////		driver.manage().timeouts().implicitlyWait(2000, TimeUnit.SECONDS);
-//        Assert.assertEquals(validationmail,"Username Required");
-//        Assert.assertEquals(validationpass,"Password Required");
-
-//
-//	@Test
-//	public void LoginWithInvalidCredentials() {
-//		driver.findElement(By.id("username")).sendKeys( "user");
-//		driver.findElement(By.id("password")).sendKeys("123456");
-//		driver.findElement(By.id("btn_submit")).click();
-//		Assert.assertEquals(true, validation.contains("Email not registered – try again or create an account"));
-//	}
-//	@Test()
-//	public void LoginWithValidCredentials(){
-//		driver.findElement(By.id("username")).sendKeys("access@mailinator.com");
-//		driver.findElement(By.id("password")).sendKeys("123456");
-//		driver.findElement(By.id("btn_submit")).click();
-//		Assert.assertEquals(true, driver.findElement(By.xpath("//a[@class='loggedIn']")).getText().contains("Access"));
-//	}
-//	@Test
-//	public void Logout(){
-//		action.moveToElement(element).build().perform();
-//		driver.findElement(By.linkText("Log Out")).click();
-//		Assert.assertEquals(true, driver.findElement(By.id("topNavLogin")).getText().contains("Login"));
-//	}
 //	@Test
 //	public void SignUp(){
 //		driver.findElement(By.id("topNavRegister")).click();

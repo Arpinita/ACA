@@ -8,8 +8,8 @@ import pageObject.Base;
 
 
 public class ReceiptPage extends Base{
-    final String HOME_PAGE = "http://lawbite.codebnb.me/";
-    @FindBy(xpath = HOME_PAGE)
+    final String BASE_URL = "http://lawbite.codebnb.me/";
+    @FindBy(xpath = BASE_URL)
     private WebElement header;
     public ReceiptPage(WebDriver driver){
 

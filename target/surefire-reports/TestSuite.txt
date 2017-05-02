@@ -1,0 +1,24 @@
+-------------------------------------------------------------------------------
+Test set: TestSuite
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 5, Errors: 0, Skipped: 0, Time elapsed: 1.486 sec <<< FAILURE! - in TestSuite
+openBrowser(tests.LoginTest)  Time elapsed: 1.066 sec  <<< FAILURE!
+java.lang.IllegalStateException: The driver executable does not exist: C:\Users\Arpine\ACA\drivers\chromedriver.exe
+	at tests.LoginTest.openBrowser(LoginTest.java:24)
+
+LoginWithEmptyFields(tests.LoginTest)  Time elapsed: 0 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at tests.LoginTest.LoginWithEmptyFields(LoginTest.java:32)
+
+LoginWithInvalidCredentials(tests.LoginTest)  Time elapsed: 0 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at tests.LoginTest.LoginWithInvalidCredentials(LoginTest.java:47)
+
+LoginWithValidCredentials(tests.LoginTest)  Time elapsed: 0 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at tests.LoginTest.LoginWithValidCredentials(LoginTest.java:56)
+
+Logout(tests.LoginTest)  Time elapsed: 0 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at tests.LoginTest.Logout(LoginTest.java:64)
+
