@@ -13,9 +13,9 @@ public class LoginPage extends Base {
     @FindBy(id = "topNavLogin")
     public WebElement LoginButton;
     @FindBy(id = "username")
-    private WebElement Email;
+    private WebElement email;
     @FindBy(id = "password")
-    private WebElement Password;
+    private WebElement password;
     @FindBy(id = "btn_submit")
     private WebElement SignInButton;
     @FindBy(xpath = "//span[contains(.,'Username Required')]")
@@ -37,11 +37,11 @@ public class LoginPage extends Base {
         this.LoginButton.click();
     }
 
-    public void LoginCredentials(String Email, String Password)  {
-        this.Email.clear();
-        this.Email.sendKeys(Email);
-        this.Password.clear();
-        this.Password.sendKeys(Password);
+    public void LoginCredentials(String email, String password)  {
+        this.email.clear();
+        this.email.sendKeys(email);
+        this.password.clear();
+        this.password.sendKeys(password);
 
     }
 

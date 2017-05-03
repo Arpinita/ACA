@@ -1,6 +1,5 @@
 common\TAGS.class
 pageObject\Base.class
-common\UserInputs$User.class
 common\UserInputs.class
 common\Config.class
 common\Users.class

@@ -1,50 +1,22 @@
 package common;
-
-
-import java.lang.reflect.Array;
-
-import static common.TAGS.*;
-
 /**
  * Created by Arpine on 5/1/2017.
  */
 public class Users {
 
-    public static void UserCredentials(int type) {
-        UserInputs ADMIN = new UserInputs("Vladik", "Kaka", "123456", "last", "tajik@gmail.com", "admin");
-        UserInputs USER_REG = new UserInputs()
-        String email = "";
-        String password = "";
-        switch (type) {
-            case ADMIN:
-                email = user.getValue("admin", "admin.email");
-                password = user.getValue("admin", "admin.password");
-                break;
-            case USER_REG:
-                email = user.getValue("reg", "reg.email");
-                password = user.getValue("reg", "reg.password");
-                break;
-            case USER_TRIAL:
-                email = user.getValue("trial", "trial.email");
-                password = user.getValue("trial", "trial.password");
-                break;
-            case ACCESS:
-                email = user.getValue("access", "access.email");
-                password = user.getValue("access", "access.password");
-                break;
-            case GROWTH:
-                email = user.getValue("growth", "growth.email");
-                password = user.getValue("growth", "growth.password");
-                break;
-            case PROTECT:
-                email = user.getValue("protect", "protect.email");
-                password = user.getValue("protect", "protect.password");
-                break;
-            case LAWYER:
-                email = user.getValue("lawyer", "lawyer.email");
-                password = user.getValue("lawyer", "lawyer.password");
-                break;
-        }
+
+
+    public String UserCredentialsAdmin(String email, String password) {
+        UserInputs ADMIN = new UserInputs("Admin", "Qwerty1234", "Admin", "Test", "arpine.stdev@gmail.com", "admin");
+        return this.UserCredentialsAdmin(email, password);
+
+        UserInputs USER_REG = new UserInputs("Reg", "123456", "Testreg", "Test", "test_reg@mailinator.com", "reg");
+        UserInputs USER_TRIAL = new UserInputs("Trial", "123456", "Testtrial", "Test", "test_trial@mailinator.com", "trial");
+        UserInputs ACCESS = new UserInputs("Access", "123456", "Access", "Test", "access@mailinator.com", "access");
+        UserInputs GROWTH = new UserInputs("Growth", "123456", "Growth", "Test", "growth@mailinator.com", "growth");
+        UserInputs PROTECT = new UserInputs("Protect", "123456", "Protect", "Test", "protect@mailinator.com", "protect");
+        UserInputs LAWYER = new UserInputs("Lawyer", "123456", "Lawyer", "Test", "lawyer@mailinator.com", "lawyer");
+
     }
 }
 

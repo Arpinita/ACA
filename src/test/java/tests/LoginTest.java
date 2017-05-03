@@ -3,6 +3,7 @@ package tests;
 
 import common.Driver;
 import common.UserInputs;
+import common.Users;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import org.testng.annotations.Test;
@@ -15,7 +16,10 @@ public class LoginTest {
     public Driver driver = new Driver();
     public WebDriver webDriver;
     public LoginPage loginPage;
-    UserInputs user = new UserInputs();
+    public Users users;
+   // Users.UserCredentials(String type);
+
+
 
 
     @BeforeTest
@@ -30,7 +34,8 @@ public class LoginTest {
     @Test()
     public void LoginWithEmptyFields() {
         loginPage.ClickOnLoginButton();
-        loginPage.LoginCredentials("", "");
+        users.UserCredentialsAdmin()
+        loginPage.LoginCredentials("Email", "password");
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
@@ -54,7 +59,7 @@ public class LoginTest {
     @Test()
     public void LoginWithValidCredentials() {
         loginPage.ClickOnLoginButton();
-        loginPage.LoginCredentials(user.getValue("access", "email"), "123456");
+        loginPage.LoginCredentials("email","password");
         loginPage.submit();
         Assert.assertEquals(loginPage.Username(), "Access");
     }
@@ -62,7 +67,7 @@ public class LoginTest {
     @Test
     public void Logout() {
         loginPage.ClickOnLoginButton();
-        loginPage.LoginCredentials(user.getValue("access", "email"), "123456");
+        loginPage.LoginCredentials(users.UserCredentials("access"), users.UserCredentials("password"));
         loginPage.submit();
         Assert.assertEquals(loginPage.Username(), "Access");
         loginPage.LogOut();
