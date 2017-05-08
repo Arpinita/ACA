@@ -29,7 +29,7 @@ public class Driver {
 
     public String getWebDriver() {
         String webdriver = "";
-        String path = System.getProperty("user.dir") + File.separator + "drivers" + File.separator;
+        String path = System.getProperty("user.dir") + File.separator + "requirements" + File.separator + "webdrivers" + File.separator;
         Boolean arch32 = System.getProperty("os.arch").contains("32");
         Boolean arch64 = System.getProperty("os.arch").contains("64");
         Boolean Windows = System.getProperty("os.name").contains("Windows");
@@ -91,7 +91,7 @@ public class Driver {
                 driver = new EdgeDriver();
                 break;
         }
-        driver.get(BASE_URL);
+         driver.get(BASE_URL);
 
     }
 }

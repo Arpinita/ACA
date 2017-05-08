@@ -1,8 +1,8 @@
 common\TAGS.class
 pageObject\Base.class
+pageObject\SignUpPage.class
 common\UserInputs.class
 common\Config.class
-common\Users.class
 common\Driver.class
 pageObject\LoginPage.class
 pageObject\ReceiptPage.class

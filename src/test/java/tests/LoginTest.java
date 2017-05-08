@@ -3,75 +3,74 @@ package tests;
 
 import common.Driver;
 import common.UserInputs;
-import common.Users;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import org.testng.annotations.Test;
 import pageObject.LoginPage;
 import org.openqa.selenium.WebDriver;
+
 import java.util.concurrent.TimeUnit;
 
 
 public class LoginTest {
-    public Driver driver = new Driver();
+
     public WebDriver webDriver;
     public LoginPage loginPage;
-    public Users users;
-   // Users.UserCredentials(String type);
+    public UserInputs userInputs;
 
 
-
-
-    @BeforeTest
+    @BeforeClass
     public void openBrowser() {
-
+        Driver driver = new Driver();
         webDriver = driver.getDriver();
+        System.out.print(webDriver);
+        webDriver.manage().window().maximize();
         loginPage = new LoginPage(webDriver);
         webDriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 
 
+    @AfterClass
+    public void closeBrowser() {
+        webDriver.close();
+        webDriver.quit();
+    }
+
     @Test()
-    public void LoginWithEmptyFields() {
-        loginPage.ClickOnLoginButton();
-        users.UserCredentialsAdmin()
-        loginPage.LoginCredentials("Email", "password");
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    public void loginWithEmptyFields() {
+
+        loginPage.clickOnLoginButton();
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         loginPage.submit();
-        Assert.assertEquals(loginPage.Validationmail(), "Username Required");
-        Assert.assertEquals(loginPage.Validationpass(), "Password Required");
+        Assert.assertEquals(loginPage.validationmail(), true);
+        Assert.assertEquals(loginPage.validationpass(), true);
     }
 
 
     @Test()
-    public void LoginWithInvalidCredentials() {
-        loginPage.ClickOnLoginButton();
-        loginPage.LoginCredentials("user", "123456");
+    public void loginWithInvalidCredentials() {
+        loginPage.loginCredentials("user@mail.com", "123456");
         loginPage.submit();
-        Assert.assertEquals(loginPage.Mainvalidation(), "Email not registered – try again or create an account");
+        Assert.assertTrue(loginPage.isEmailNotCorretMessagePresent(), "Email not registered – try again or create an account");
 
     }
 
     @Test()
-    public void LoginWithValidCredentials() {
-        loginPage.ClickOnLoginButton();
-        loginPage.LoginCredentials("email","password");
+    public void loginWithValidCredentials() {
+        loginPage.loginCredentials("access@mailinator.com", "123456");
         loginPage.submit();
-        Assert.assertEquals(loginPage.Username(), "Access");
+        Assert.assertTrue(loginPage.username(), "Access");
     }
 
     @Test
-    public void Logout() {
-        loginPage.ClickOnLoginButton();
-        loginPage.LoginCredentials(users.UserCredentials("access"), users.UserCredentials("password"));
-        loginPage.submit();
-        Assert.assertEquals(loginPage.Username(), "Access");
-        loginPage.LogOut();
-        Assert.assertEquals(loginPage.LoginButton, "Login");
+    public void logout() {
+        Assert.assertTrue(loginPage.username(), "Access");
+        loginPage.logOut();
+        Assert.assertTrue(loginPage.loginButtonPresent(), "Login");
     }
 }
 //	@Test
@@ -89,7 +88,7 @@ public class LoginTest {
 //		driver.findElement(By.id("accountbtn")).click();
 //	}
 /*	@After
-		driver.close();
+        driver.close();
 		 driver.quit();*/
 
 
