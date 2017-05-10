@@ -1,14 +1,18 @@
 package pageObject;
 
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+
 
 /**
  * Created by Arpine on 5/8/2017.
  */
 public class SignUpPage extends Base {
-
+    Actions actions = new Actions(driver);
     @FindBy(xpath = "//button[@id='topNavRegister']")
     WebElement signUpButton;
     @FindBy(xpath = "//*[@id='fancybox-content']")
@@ -45,6 +49,12 @@ public class SignUpPage extends Base {
     WebElement validationTerms;
     @FindBy(xpath = ".//*[@id='register_form']/div[8]/span")
     WebElement captchaIsRequired;
+    @FindBy(xpath = "//*[@id='container']/div[1]/div[1]/div[1]/div/div/div[4]/ul/li[5]/a")     //"//a[contains(text(), 'Pricing')]")
+    WebElement pricing;
+    @FindBy(xpath = ".//*[@id='container']/div[1]/div[1]/div[1]/div/div/div[4]/ul/li[5]/div/ul/li[2]/a")        //"//a[contains(text(), 'Pricing Plans')]")
+    WebElement pricingPlans;
+    @FindBy(xpath = "//a[contains(text(), 'Try it free for a week!')]")
+    WebElement trial;
 
 
 
@@ -88,14 +98,22 @@ public class SignUpPage extends Base {
         return this.captchaIsRequired.isDisplayed();
     }
 
+    public void pricingDropDown(){
+        this.pricing.click();
+        actions.moveToElement(driver.findElement(By.xpath("//*[@id='container']/div[1]/div[1]/div[1]/div/div/div[4]/ul/li[5]/div/ul"))).build().perform();
+      // actions.moveToElement(pricing).build().perform();
+        actions.moveToElement(pricingPlans).build().perform();
+        this.pricingPlans.click();
+    }
+
+    public void trial(){
+        this.trial.click();
+    }
+
     public void signUpCredentials(String firstName, String lastName, String signUpEmail, String signUpPassword, String signUpConfirmPassword){
-        this.firstName.clear();
         this.firstName.sendKeys(firstName);
-        this.lastName.clear();
         this.lastName.sendKeys(lastName);
-        this.signUpEmail.clear();
         this.signUpEmail.sendKeys(signUpEmail);
-        this.signUpPassword.clear();
         this.signUpPassword.sendKeys(signUpPassword);
         this.signUpConfirmPassword.sendKeys(signUpConfirmPassword);
         this.condition.click();
@@ -105,5 +123,7 @@ public class SignUpPage extends Base {
     public void createAccountButton(){
         this.createAccountButton.click();
     }
+
+
 
 }
