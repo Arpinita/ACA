@@ -1,18 +1,18 @@
-package pageObject;
+package pageObject.signUp;
 
 import common.Inputs;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.Select;
+import pageObject.Base;
+
 
 /**
  * Created by Arpine on 5/9/2017.
  */
-public class SignUpTrial extends Base {
+public class SignUpTrialPage extends Base {
 
         Inputs inputs = new Inputs();
         Actions actions = new Actions(driver);
@@ -50,7 +50,7 @@ public class SignUpTrial extends Base {
         @FindBy(id = "freetrial_stepTwoGetAdviceFreeTrial")
         WebElement signUpButton;
 
-    public SignUpTrial(WebDriver driver)  {
+    public SignUpTrialPage(WebDriver driver)  {
         super(driver);
     }
 

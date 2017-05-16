@@ -1,10 +1,12 @@
 C:\Users\Arpine\ACA\src\main\java\common\UserInputs.java
+C:\Users\Arpine\ACA\src\main\java\pageObject\signUp\SignUpTrialPage.java
 C:\Users\Arpine\ACA\src\main\java\common\TAGS.java
 C:\Users\Arpine\ACA\src\main\java\pageObject\ReceiptPage.java
-C:\Users\Arpine\ACA\src\main\java\pageObject\SignUpTrial.java
+C:\Users\Arpine\ACA\src\main\java\common\DataInputs.java
+C:\Users\Arpine\ACA\src\main\java\pageObject\signUp\SignUpAccessPage.java
 C:\Users\Arpine\ACA\src\main\java\common\Inputs.java
-C:\Users\Arpine\ACA\src\main\java\pageObject\SignUpPage.java
 C:\Users\Arpine\ACA\src\main\java\common\Config.java
 C:\Users\Arpine\ACA\src\main\java\common\Driver.java
+C:\Users\Arpine\ACA\src\main\java\pageObject\signUp\SignUpPage.java
 C:\Users\Arpine\ACA\src\main\java\pageObject\Base.java
 C:\Users\Arpine\ACA\src\main\java\pageObject\LoginPage.java

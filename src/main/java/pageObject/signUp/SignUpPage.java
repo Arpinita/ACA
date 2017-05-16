@@ -1,4 +1,4 @@
-package pageObject;
+package pageObject.signUp;
 
 
 import org.openqa.selenium.By;
@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import pageObject.Base;
+import common.DataInputs;
 
 
 /**
@@ -13,15 +15,23 @@ import org.openqa.selenium.support.FindBy;
  */
 public class SignUpPage extends Base {
     Actions actions = new Actions(driver);
+    DataInputs dataInputs = new DataInputs();
+    String firstNameData = dataInputs.firstNameData();
+    String lastNameData = dataInputs.lastNameData();
+    String emailData = dataInputs.emailData();
+    String passwordData = dataInputs.passwordData();
+    String confirmPasswordData = passwordData;
+
+
     @FindBy(xpath = "//button[@id='topNavRegister']")
     WebElement signUpButton;
     @FindBy(xpath = "//*[@id='fancybox-content']")
     WebElement signUpPopUp;
-    @FindBy(id = "user_firstname")
+    @FindBy(xpath = "//input[@placeholder='First Name']")
     WebElement firstName;
-    @FindBy(id = "user_lastname")
+    @FindBy(xpath = "//input[@placeholder='Last Name']")
     WebElement lastName;
-    @FindBy(id = "user_email")
+    @FindBy(xpath = "//input[@placeholder='Email']")
     WebElement signUpEmail;
     @FindBy(id = "user_password")
     WebElement signUpPassword;
@@ -110,12 +120,12 @@ public class SignUpPage extends Base {
         this.trial.click();
     }
 
-    public void signUpCredentials(String firstName, String lastName, String signUpEmail, String signUpPassword, String signUpConfirmPassword){
-        this.firstName.sendKeys(firstName);
-        this.lastName.sendKeys(lastName);
-        this.signUpEmail.sendKeys(signUpEmail);
-        this.signUpPassword.sendKeys(signUpPassword);
-        this.signUpConfirmPassword.sendKeys(signUpConfirmPassword);
+    public void signUpCredentials(){
+        this.firstName.sendKeys(firstNameData);
+        this.lastName.sendKeys(lastNameData);
+        this.signUpEmail.sendKeys(emailData);
+        this.signUpPassword.sendKeys(passwordData);
+        this.signUpConfirmPassword.sendKeys(confirmPasswordData);
         this.condition.click();
         this.checkbox2.click();
     }

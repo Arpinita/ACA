@@ -1,10 +1,12 @@
+pageObject\signUp\SignUpAccessPage.class
 common\TAGS.class
 pageObject\Base.class
-pageObject\SignUpTrial.class
-pageObject\SignUpPage.class
+pageObject\signUp\SignUpPage.class
+common\DataInputs.class
 common\UserInputs.class
 common\Config.class
 common\Inputs.class
 common\Driver.class
 pageObject\LoginPage.class
 pageObject\ReceiptPage.class
+pageObject\signUp\SignUpTrialPage.class

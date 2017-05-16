@@ -73,23 +73,6 @@ public class LoginTest {
         Assert.assertTrue(loginPage.loginButtonPresent(), "Login");
     }
 }
-//	@Test
-//	public void SignUp(){
-//		driver.findElement(By.id("topNavRegister")).click();
-//		Assert.assertEquals(true, driver.findElement(By.id("fancybox-content")).isDisplayed());
-//		driver.findElement(By.id("user_firstname")).sendKeys("Name");
-//		driver.findElement(By.id("user_lastname")).sendKeys("Surname");
-//		driver.findElement(By.id("user_email")).sendKeys("test1304@mailinator.com");
-//		driver.findElement(By.id("user_password")).sendKeys("123456");
-//		driver.findElement(By.id("user_confirm_password")).sendKeys("123456");
-//		driver.findElement(By.id("condition")).click();
-//		driver.findElement(By.id("checkbox2")).click();
-//
-//		driver.findElement(By.id("accountbtn")).click();
-//	}
-/*	@After
-        driver.close();
-		 driver.quit();*/
 
 
 

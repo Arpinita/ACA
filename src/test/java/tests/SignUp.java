@@ -1,18 +1,17 @@
 package tests;
 
 import common.Driver;
-import org.junit.Ignore;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
-import pageObject.SignUpPage;
-import pageObject.SignUpTrial;
+import org.testng.annotations.*;
+import pageObject.LoginPage;
+import pageObject.signUp.SignUpAccessPage;
+import pageObject.signUp.SignUpPage;
+import pageObject.signUp.SignUpTrialPage;
 import java.util.concurrent.TimeUnit;
+import common.Inputs;
+
 
 /**
  * Created by Arpine on 5/8/2017.
@@ -20,28 +19,33 @@ import java.util.concurrent.TimeUnit;
 public class SignUp {
     public WebDriver webDriver;
     public SignUpPage signUpPage;
-    public SignUpTrial signUpTrial;
+    public SignUpTrialPage signUpTrial;
+    public SignUpAccessPage signUpAccess;
+    public LoginPage loginPage;
+    Inputs inputs = new Inputs();
     JavascriptExecutor jse = (JavascriptExecutor)webDriver;
 
 
-    @BeforeClass
+    @BeforeMethod
     public void openBrowser() {
         Driver driver = new Driver();
         webDriver = driver.getDriver();
         System.out.print(webDriver);
         webDriver.manage().window().maximize();
         signUpPage = new SignUpPage(webDriver);
-        signUpTrial = new SignUpTrial(webDriver);
+        signUpTrial = new SignUpTrialPage(webDriver);
+        signUpAccess = new SignUpAccessPage(webDriver);
+        loginPage = new LoginPage(webDriver);
         webDriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 
-    @AfterClass
+    @AfterMethod
     public void closeBrowser(){
         webDriver.close();
         webDriver.quit();
     }
 
-   @Test()
+  /* @Test()
     public void emptyFields(){
         signUpPage.clickOnSignUpButton();
             try {
@@ -50,8 +54,7 @@ public class SignUp {
                 e.printStackTrace();
             }
         Assert.assertEquals(signUpPage.signUpPopUp(),true);
-        JavascriptExecutor jse = (JavascriptExecutor)webDriver;
-        jse.executeScript("window.scrollBy(0,250)", "");
+       ((JavascriptExecutor)webDriver).executeScript("window.scrollTo(0,300);");
         signUpPage.createAccountButton();
             try {
                 Thread.sleep(3000);
@@ -66,28 +69,33 @@ public class SignUp {
         Assert.assertEquals(signUpPage.validationTerms(), true);
         Assert.assertEquals(signUpPage.captchaIsRequired(), true);
     }
-
+*/
 
     @Test()
     public void signUp(){
-        signUpPage.signUpCredentials("Test","Test","test@mailinator.com","123456","123456");
+        signUpPage.clickOnSignUpButton();
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        signUpPage.signUpCredentials();
         jse.executeScript("window.scrollBy(0,300)", "");
         signUpPage.captchaIsRequired();
         signUpPage.createAccountButton();
+        Assert.assertEquals(loginPage.username(), true);
 
     }
 
-   @Test()
+    /* @Test()
     public void signUpAsTrial(){
-
                try {
                    Thread.sleep(3000);
                } catch (InterruptedException e) {
                    e.printStackTrace();
                }
         signUpPage.pricingDropDown();
-
-       jse.executeScript("window.scrollBy(0,300)", "");
+        jse.executeScript("window.scrollBy(0,300)", "");
         signUpPage.trial();
         signUpTrial.freeTrialPopUpLink();
         Assert.assertEquals(signUpTrial.freeTrialPopUp(), true);
@@ -102,6 +110,59 @@ public class SignUp {
         jse.executeScript("window.scrollBy(0,250)", "");
         signUpTrial.captcha();
         signUpTrial.signUpButton();
-
+        Assert.assertEquals(loginPage.username(), true);
    }
+
+   @Test()
+    public void signUpAsAccessWithoutBilling(){
+               try {
+                   Thread.sleep(3000);
+               } catch (InterruptedException e) {
+                   e.printStackTrace();
+               }
+       signUpPage.pricingDropDown();
+       jse.executeScript("window.scrollBy(0,300)", "");
+       signUpAccess.accessButton();
+       signUpAccess.accessLink();
+       signUpAccess.companyType();
+       signUpAccess.signUpAccessCredentials();
+       signUpAccess.companySector();
+       signUpAccess.companySize();
+       signUpAccess.checkbox();
+       signUpAccess.proceedButton();
+       signUpAccess.yourPosition();
+       signUpAccess.howDidYouFindUs();
+       signUpAccess.terms();
+       signUpAccess.receiveNewsletter();
+       signUpAccess.captcha();
+       signUpAccess.goToBasketButton();
+       Assert.assertEquals(loginPage.username(), true);
+   }
+
+   @Test()
+    public void signUpAsWithBilling(){
+               try {
+                   Thread.sleep(3000);
+               } catch (InterruptedException e) {
+                   e.printStackTrace();
+               }
+       signUpPage.pricingDropDown();
+       jse.executeScript("window.scrollBy(0,300)", "");
+       signUpAccess.accessButton();
+       signUpAccess.accessLink();
+       signUpAccess.companyType();
+       signUpAccess.signUpAccessCredentials();
+       signUpAccess.companySector();
+       signUpAccess.companySize();
+       signUpAccess.signUpAccessCredentialsBilling();
+       signUpAccess.proceedButton();
+       signUpAccess.signUpAccessCredentialsDetails();
+       signUpAccess.yourPosition();
+       signUpAccess.howDidYouFindUs();
+       signUpAccess.terms();
+       signUpAccess.receiveNewsletter();
+       signUpAccess.captcha();
+       signUpAccess.goToBasketButton();
+       Assert.assertEquals(loginPage.username(), true);
+    }*/
 }
