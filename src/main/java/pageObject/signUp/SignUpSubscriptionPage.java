@@ -12,7 +12,7 @@ import common.DataInputs;
 /**
  * Created by Arpine on 5/11/2017.
  */
-public class SignUpAccessPage extends Base {
+public class SignUpSubscriptionPage extends Base {
 
     Actions actions = new Actions(driver);
     Inputs inputs = new Inputs();
@@ -29,8 +29,12 @@ public class SignUpAccessPage extends Base {
     String phoneNumberData = dataInputs.phoneNumberData();
     String passwordData = dataInputs.passwordData();
 
-    @FindBy(xpath = "//a[@class='btn primary access']")
+    @FindBy(xpath = "//*[contains(text(), 'Sign up to Access')]")
     WebElement accessButton;
+    @FindBy(xpath = "//a[@class='btn primary growth']")
+    WebElement growthButton;
+    @FindBy(xpath = "//a[@class='btn primary protect']")
+    WebElement protectButton;
     @FindBy(id = "scroll")
     WebElement accessLink;
     @FindBy(xpath = "//*[@id='company_type_chosen']/a")
@@ -89,13 +93,17 @@ public class SignUpAccessPage extends Base {
     WebElement goToBasketButton;
 
 
-    public SignUpAccessPage(WebDriver driver)  {
+    public SignUpSubscriptionPage(WebDriver driver)  {
         super(driver);
     }
 
     public void accessButton(){ this.accessButton.click();}
 
-    public void accessLink(){this.accessLink.click();}
+    public void subscriptionLink(){this.accessLink.click();}
+
+    public void growthButton(){this.growthButton.click();}
+
+    public void protectButton(){this.protectButton.click();}
 
     public void companyType(){
         this.companyType.click();
@@ -108,7 +116,7 @@ public class SignUpAccessPage extends Base {
         driver.findElement(By.xpath("//*[@id='company_type_chosen']/div/ul/li[2]")).click();
     }
 
-    public void signUpAccessCredentials(){
+    public void signUpSubscriptionCredentials(){
         this.companyName.sendKeys(companyNameData);
         this.address1.sendKeys(address1Data);
         this.address2.sendKeys(address2Data);
@@ -144,7 +152,7 @@ public class SignUpAccessPage extends Base {
         this.checkbox.click();
     }
 
-    public void signUpAccessCredentialsBilling() {
+    public void signUpSubscriptionCredentialsBilling() {
         this.billingCompanyName.sendKeys(billingCompanyNameData);
         this.billingAddress1.sendKeys(address1Data);
         this.billingAddress2.sendKeys(address2Data);
@@ -159,7 +167,7 @@ public class SignUpAccessPage extends Base {
         this.proceedButton.click();
     }
 
-    public void signUpAccessCredentialsDetails(){
+    public void signUpSubscriptionCredentialsDetails(){
         this.fullName.sendKeys(fullNameData);
         this.email.sendKeys(emailData);
         this.phoneNumber.sendKeys(phoneNumberData);

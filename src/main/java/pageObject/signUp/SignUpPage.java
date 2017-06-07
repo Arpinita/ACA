@@ -33,13 +33,13 @@ public class SignUpPage extends Base {
     WebElement lastName;
     @FindBy(xpath = "//input[@placeholder='Email']")
     WebElement signUpEmail;
-    @FindBy(id = "user_password")
+    @FindBy(xpath = "//input[@placeholder='Create Password']")
     WebElement signUpPassword;
-    @FindBy(id = "user_confirm_password")
+    @FindBy(xpath = "//input[@id='user_confirm_password']")
     WebElement signUpConfirmPassword;
-    @FindBy(id = "condition")
+    @FindBy(xpath = "//input[@id='condition']")
     WebElement condition;
-    @FindBy(id = "checkbox2")
+    @FindBy(xpath = "//input[@id='checkbox2']")
     WebElement checkbox2;
     @FindBy(xpath = "//*[@class='recaptcha-checkbox-checkmark']")
     WebElement captcha;
@@ -57,8 +57,10 @@ public class SignUpPage extends Base {
     WebElement passwordsDoNotMatch;
     @FindBy(xpath = ".//*[@id='register_form']/div[6]/span")
     WebElement validationTerms;
-    @FindBy(xpath = ".//*[@id='register_form']/div[8]/span")
+    @FindBy(xpath = "//*[@id='register_form']/div[8]/span")
     WebElement captchaIsRequired;
+    @FindBy(xpath = "//*[@id='recaptcha-anchor']/div[5]")
+    WebElement captchaCheckmark;
     @FindBy(xpath = "//*[@id='container']/div[1]/div[1]/div[1]/div/div/div[4]/ul/li[5]/a")     //"//a[contains(text(), 'Pricing')]")
     WebElement pricing;
     @FindBy(xpath = ".//*[@id='container']/div[1]/div[1]/div[1]/div/div/div[4]/ul/li[5]/div/ul/li[2]/a")        //"//a[contains(text(), 'Pricing Plans')]")
@@ -106,6 +108,10 @@ public class SignUpPage extends Base {
 
     public boolean captchaIsRequired(){
         return this.captchaIsRequired.isDisplayed();
+    }
+
+    public void captchaCheckmark(){
+        this.captchaCheckmark.click();
     }
 
     public void pricingDropDown(){

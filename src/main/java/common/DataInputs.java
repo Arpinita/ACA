@@ -62,7 +62,7 @@ public class DataInputs {
     }
 
     public String fullNameData(){
-        this.fullNameData = inputs.randomAtoZ() + inputs.randomAtoZ();
+        this.fullNameData = inputs.randomAtoZ() +" "+ inputs.randomAtoZ();
         return fullNameData;
     }
 

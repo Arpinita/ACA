@@ -42,7 +42,7 @@ public class SignUpTrialPage extends Base {
         @FindBy(xpath = "//*[@id='user_freetrial_companySize_chosen']/a")
         WebElement companySize;
         @FindBy(xpath = "//*[@id='user_freetrial_termscondition']")
-        WebElement termscondition;
+        WebElement terms;
         @FindBy(xpath = "//*[@id='user_freetrial_receiveNewsletter']")
         WebElement receiveNewsletter;
         @FindBy(xpath = "//*[@id='recaptcha-anchor']/div[5]")
@@ -118,8 +118,8 @@ public class SignUpTrialPage extends Base {
         driver.findElement(By.xpath("//*[@id='user_freetrial_companySize_chosen']/div/ul/li[4]")).click();
     }
 
-    public void termscondition(){
-        this.termscondition.click();
+    public void terms(){
+        this.terms.click();
     }
 
     public void receiveNewsletter(){
