@@ -1,6 +1,6 @@
 package tests;
 
-import common.Driver;
+import config.Driver;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;

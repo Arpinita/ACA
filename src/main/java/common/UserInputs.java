@@ -1,7 +1,11 @@
 package common;
 
+import org.openqa.selenium.WebElement;
+import pageObject.LoginPage;
+
 import java.util.HashMap;
 import java.util.Map;
+import java.lang.String;
 
 
 
@@ -13,6 +17,9 @@ public class UserInputs {
     public String lastName;
     public String email;
     public String type;
+    public LoginPage loginPage;
+    //public WebElement email;
+
 
     public Map<String, Map> userMap = new HashMap();
 
@@ -31,18 +38,20 @@ public class UserInputs {
 
     }
 
-    public String userCredentialsAdmin() {
-        this.email = "arpine.stdev@gmail.com";
+
+  /*  //userCredentialsAdmin()
+        Users admin = new Users();
+        admin.email = "arpine.stdev@gmail.com";
         this.password = "Qwerty1234";
         this.firstName = "Admin";
         this.lastName = "Test";
         this.type = "admin";
 
-        return userCredentialsAdmin();
-    }
+        //return userCredentialsAdmin();
+
 
     public String userCredentialsReg(){
-        this.email = "test_reg@mailinator.com";
+        this.email.sendKeys("test_reg@mailinator.com");
         this.password = "123456";
         this.firstName = "Testreg";
         this.lastName = "Test";
@@ -52,7 +61,7 @@ public class UserInputs {
     }
 
     public String userCredentialsTrial(){
-        this.email = "test_trial@mailinator.com";
+        this.email.sendKeys("test_trial@mailinator.com");
         this.password = "123456";
         this.firstName = "Testtrial";
         this.lastName = "Test";
@@ -62,7 +71,7 @@ public class UserInputs {
     }
 
     public String userCredentialsAccess(){
-        this.email = "access@mailinator.com";
+        loginPage.email.sendKeys("access@mailinator.com");
         this.password = "123456";
         this.firstName = "Access";
         this.lastName = "Test";
@@ -72,7 +81,7 @@ public class UserInputs {
     }
 
     public String userCredentialsGrowth(){
-        this.email = "growth@mailinator.com";
+        this.email.sendKeys("growth@mailinator.com");
         this.password = "123456";
         this.firstName = "Growth";
         this.lastName = "Test";
@@ -82,7 +91,7 @@ public class UserInputs {
     }
 
     public String userCredentialsProtect(){
-        this.email = "protect@mailinator.com";
+        this.email.sendKeys("protect@mailinator.com");
         this.password = "123456";
         this.firstName = "Protect";
         this.lastName = "Test";
@@ -92,12 +101,12 @@ public class UserInputs {
     }
 
     public String userCredentialsLawyer(){
-        this.email = "lawyer@mailinator.com";
+        this.email.sendKeys("lawyer@mailinator.com");
         this.password = "123456";
         this.firstName = "Lawyer";
         this.lastName = "Test";
         this.type = "lawyer";
 
         return userCredentialsLawyer();
-    }
+    }*/
 }

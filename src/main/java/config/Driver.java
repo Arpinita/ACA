@@ -1,8 +1,8 @@
-package common;
+package config;
 
 
-import static common.TAGS.*;
-import static common.Config.*;
+import static config.TAGS.*;
+import static config.Config.*;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;

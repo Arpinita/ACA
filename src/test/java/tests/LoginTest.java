@@ -1,7 +1,7 @@
 package tests;
 
 
-import common.Driver;
+import config.Driver;
 import common.UserInputs;
 import org.testng.Assert;
 import org.testng.annotations.*;
@@ -19,7 +19,7 @@ public class LoginTest {
     public UserInputs userInputs;
 
 
-    @BeforeClass
+    @BeforeMethod
     public void openBrowser() {
         Driver driver = new Driver();
         webDriver = driver.getDriver();
@@ -30,7 +30,7 @@ public class LoginTest {
     }
 
 
-    @AfterClass
+    @AfterMethod
     public void closeBrowser() {
         webDriver.close();
         webDriver.quit();
@@ -45,7 +45,7 @@ public class LoginTest {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        loginPage.submit();
+        loginPage.signInButton();
         Assert.assertEquals(loginPage.validationmail(), true);
         Assert.assertEquals(loginPage.validationpass(), true);
     }
@@ -53,8 +53,8 @@ public class LoginTest {
 
     @Test()
     public void loginWithInvalidCredentials() {
-        loginPage.loginCredentials("user@mail.com", "123456");
-        loginPage.submit();
+        loginPage.loginCredentials("test@gmail.com", "123456");
+        loginPage.signInButton();
         Assert.assertTrue(loginPage.isEmailNotCorretMessagePresent(), "Email not registered – try again or create an account");
 
     }
@@ -62,7 +62,7 @@ public class LoginTest {
     @Test()
     public void loginWithValidCredentials() {
         loginPage.loginCredentials("access@mailinator.com", "123456");
-        loginPage.submit();
+        loginPage.signInButton();
         Assert.assertTrue(loginPage.username(), "Access");
     }
 

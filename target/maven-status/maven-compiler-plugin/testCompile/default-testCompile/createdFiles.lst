@@ -1,2 +1,3 @@
+tests\CreateEnquiry.class
 tests\LoginTest.class
 tests\SignUpTest.class

@@ -1,7 +1,6 @@
-package common;
+package config;
 
-import static common.TAGS.CHROME;
-import static common.TAGS.FIREFOX;
+import static config.TAGS.CHROME;
 
 public class Config {
 
