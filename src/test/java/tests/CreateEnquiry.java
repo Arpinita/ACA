@@ -1,30 +1,23 @@
 package tests;
 
-import common.Enquiry;
-import common.Inputs;
+
 import config.Driver;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
+import core.GetLegalAdvicePopUp;
+import org.openqa.selenium.*;
 import org.testng.annotations.*;
 import org.testng.annotations.BeforeMethod;
 import pageObject.LoginPage;
-
-import javax.swing.*;
+import pageObject.user.myLegalEnquiries.EnterNewLegalEnquiry;
 
 import static config.TAGS.*;
 
-/**
- * Created by Arpine on 6/8/2017.
- */
+
 public class CreateEnquiry {
     public WebDriver webDriver;
     public LoginPage loginPage;
     private String email;
     private String password;
-    public Enquiry enquiry;
-
+    public EnterNewLegalEnquiry enterNewLegalEnquiryXpaths ;
 
 
     @BeforeMethod
@@ -34,7 +27,8 @@ public class CreateEnquiry {
         System.out.print(webDriver);
         webDriver.manage().window().maximize();
         loginPage = new LoginPage(webDriver);
-        Enquiry enquiry = new Enquiry();
+        //Enquiry enquiry = new Enquiry();
+
     }
 
     @AfterMethod
@@ -46,56 +40,44 @@ public class CreateEnquiry {
     @Test()
     public void createEnquiry() throws InterruptedException {
         loginPage.clickOnLoginButton();
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Thread.sleep(5000);
         loginPage.loginPopUp();
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
+        Thread.sleep(5000);
         this.login(ACCESS);
         loginPage.loginCredentials(this.email, this.password);
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Thread.sleep(5000);
         loginPage.signInButton();
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        Assert.assertEquals(loginPage.username(), true);
-        try {
-            Thread.sleep(6000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        webDriver.findElement(By.xpath("//a[@href='/legal-enquiry']")).click();
-        Thread.sleep(3000);
-        webDriver.findElement(By.xpath("//*[@id='fancybox-content']")).isDisplayed();
+        Thread.sleep(7000);
+        webDriver.findElement(By.xpath("//a[@class='popup']")).click();
+        Thread.sleep(7000);
+        webDriver.findElement(By.xpath("//div[@class='widget']")).isDisplayed();
         webDriver.findElement(By.xpath("//*[@id='category']")).click();
-        Thread.sleep(3000);
-        webDriver.findElement(By.xpath("//option[@value='20']")).click();
-        Thread.sleep(3000);
-        enquiry.caseSubject();
-        enquiry.caseDescription();
-        enquiry.sendButton();
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        Alert confirmationAlert = webDriver.switchTo().alert();
-        String alertText = confirmationAlert.getText();
-        System.out.println("Alert text is " + alertText);
-        confirmationAlert.accept();
+        Thread.sleep(5000);
+
+        enterNewLegalEnquiryXpaths = new EnterNewLegalEnquiry(
+                "//*[@id='category']",
+                "//*[@id='case_subject']",
+                "//*[@id='case_description']",
+                "//*[@id='linkLawbiteDoc']",
+                "//button[contains(@type,'button')]",
+                "//a[@id='sendbtn']"
+                );
+
+        GetLegalAdvicePopUp getLegalAdvicePopUp = new GetLegalAdvicePopUp(webDriver, enterNewLegalEnquiryXpaths);
+
+        getLegalAdvicePopUp.selectRandomFromDropdownList();
+        Thread.sleep(5000);
+        getLegalAdvicePopUp.setSubjectValue();
+        Thread.sleep(5000);
+        getLegalAdvicePopUp.setDescriptionValue();
+        Thread.sleep(5000);
+
+
+
+//        Alert confirmationAlert = webDriver.switchTo().alert();
+//        String alertText = confirmationAlert.getText();
+//        System.out.println("Alert text is " + alertText);
+//        confirmationAlert.accept();
 
     }
 

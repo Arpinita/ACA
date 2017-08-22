@@ -7,6 +7,12 @@ import java.util.Random;
  */
 public class Inputs {
 
+    public String random_text;
+
+    public Inputs(){
+        random_text = randomAtoZ();
+    }
+
     public String randomAtoZ() {
         char[] chars = "abcdefghijklmnopqrstuvwxyz".toCharArray();
         StringBuilder sb = new StringBuilder();

@@ -17,7 +17,8 @@ public class Enquiry {
     public WebDriver driver;
     public Inputs inputs;
     public Popup newWin;
-//    Actions actions = new Actions(driver);
+    Actions actions = new Actions(driver);
+    String subject = inputs.randomAtoZ();
 
     @FindBy(xpath = "//i[@class='fa fa-times']")
     public WebElement clientCareAlert;
@@ -25,18 +26,20 @@ public class Enquiry {
     WebElement newLegalEnquiry;
     @FindBy(xpath = "//div[@id='fancybox-content']")
     WebElement enquiryPopUp;
-    @FindBy(id = "category")
+    @FindBy(xpath = "//*[@id='category']")
     WebElement legalCategory;
-    @FindBy(id = "case_subject")
+    @FindBy(xpath = "//input[@id='case_subject']")
     WebElement caseSubject;
-    @FindBy(id = "case_description")
+    @FindBy(xpath = "//*[@id='case_description']")
     WebElement caseDescription;
     @FindBy(id = "linkLawbiteDoc")
     WebElement linkLawbiteDoc;
     @FindBy(id = "sendbtn")
     WebElement sendButton;
 
-
+    public void category() {
+        actions.moveToElement(driver.findElement(By.xpath("//option[@value='20']"))).build().perform();
+    }
 //    public void clientCareAlert(){
 ////        actions.moveToElement(driver.findElement(By.xpath("//div[@class='preemtive-chat agent_text_button']"))).build().perform();
 ////        actions.moveToElement(driver.findElement(By.xpath("//i[@class='fa fa-times']"))).build().perform();
@@ -56,16 +59,17 @@ public class Enquiry {
 
     public void chooseFromDropDown(){
         this.legalCategory.click();
-         Select dropdown = new Select(driver.findElement(By.xpath("//select[@id='category']")));
-         dropdown.selectByVisibleText("Corporate");
+         Select dropdown = new Select(driver.findElement(By.xpath("//option[@value='20']")));
+         dropdown.selectByVisibleText("Consultancy");
     }
 
     public void caseSubject(){
-        this.caseSubject.sendKeys(inputs.randomAtoZ());
+       // this.caseSubject.click();
+        this.caseSubject.sendKeys(subject);
     }
 
     public void caseDescription(){
-        this.caseDescription.sendKeys(inputs.randomAtoZ());
+        this.caseDescription.sendKeys(subject);
     }
 
     public void sendButton(){

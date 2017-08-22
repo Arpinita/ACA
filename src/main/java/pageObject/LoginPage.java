@@ -19,17 +19,17 @@ public class LoginPage extends Base {
     public WebElement email;
     @FindBy(id = "password")
     public WebElement password;
-    @FindBy(id = "btn_submit")
+    @FindBy(id = "btn_submit_fake")
     WebElement signInButton;
     @FindBy(xpath = "//span[contains(.,'Username Required')]")
     WebElement validationmail;
     @FindBy(xpath = "//span[contains(.,'Password Required')]")
     WebElement validationpass;
-    @FindBy(xpath = "//span[contains(.,'Email not registered – try again or create an account')]")
+    @FindBy(xpath = "//span[@class='error']")
     WebElement mainvalidation;
-    @FindBy(xpath = "//*[@id='container']/div[2]/div[1]/div/div[3]/div[1]")
+    @FindBy(xpath = "//*[@id='container']/div[2]/div[1]/div[1]/div/div[3]/div[1]")
     WebElement username;
-    @FindBy(xpath = "//a[contains(text(), 'Sign out')]")
+    @FindBy(xpath = "//*[@id='container']/div[2]/div[1]/div/div[4]/ul/li[7]/a")
     WebElement signOut;
     @FindBy(xpath = "//div[@id='fancybox-content']")
     WebElement loginPopUp;
